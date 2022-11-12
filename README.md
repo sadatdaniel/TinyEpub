@@ -1,21 +1,12 @@
 # TinyEpub
 
-**TODO: Add description**
-
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `tiny_epub` to your list of dependencies in `mix.exs`:
+  * Install Elixir on your system. You can follow the instuctions here [`Elixir Installation Guide`](https://elixir-lang.org/install.html)
+  * Load the project and install dependencies with `mix deps.get`
+  * Start an IEx session in the project with `iex -S mix`
+  * Now pass the path of your Epub directory or Epub file you would love to compress
 
-```elixir
-def deps do
-  [
-    {:tiny_epub, "~> 0.1.0"}
-  ]
-end
-```
+## Note
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/tiny_epub>.
-
+Please make sure to read the code before using. I am not responsible for any damage. 
