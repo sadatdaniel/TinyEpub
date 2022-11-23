@@ -1,5 +1,7 @@
 # TinyEpub
 
+TinyEpub is a tool to reduce the size of a heavy EPUB file by resizing the images it contains. It is intended for the people who sideload EPUB files on their E-Readers and when space becomes a matter of concern. However, if your EPUB file does not contain any images TinyEpub cannot reduce it's file size.
+
 ## Installation
 
   * Install Elixir on your system. You can follow the instuctions here [`Elixir Installation Guide`](https://elixir-lang.org/install.html)
