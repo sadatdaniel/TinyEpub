@@ -11,4 +11,4 @@ TinyEpub is a tool to reduce the size of a heavy EPUB file by resizing the image
 
 ## Note
 
-Please make sure to read the code before using. I am not responsible for any damage. 
+Please make sure to read the code before using. I am not responsible for any damage. Do not run an unknown program without reading the code first. Enjoy!
