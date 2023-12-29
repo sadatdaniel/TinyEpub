@@ -1,5 +1,3 @@
-# import Mogrify
-
 defmodule TinyEpub.Handler do
   def handle(path) do
     path
@@ -11,7 +9,7 @@ defmodule TinyEpub.Handler do
   end
 
   defp backup(path) do
-
+    IO.write("Creating backup\n")
     File.cd(System.tmp_dir!())
     File.mkdir("TinyEpub")
     File.cd("TinyEpub")
@@ -21,9 +19,8 @@ defmodule TinyEpub.Handler do
   end
 
   defp extract(app_dir) do
-
+    IO.write("Extracting to look for images\n")
     File.cd(app_dir)
-
     Enum.each(Path.wildcard("#{app_dir}/**/*.{epub}"), fn x ->
       # File.cp(x, Path.join([app_dir, Path.basename(x)]))
       file_base = Path.basename(x, ".epub")
@@ -36,6 +33,7 @@ defmodule TinyEpub.Handler do
   end
 
   defp process(app_dir) do
+    IO.write("Processing...\n")
     File.cd(app_dir)
     {_, folders} = File.ls()
 
@@ -56,13 +54,17 @@ defmodule TinyEpub.Handler do
   end
 
   defp package(folder) do
-    files = File.ls!(folder) |> Enum.map(&String.to_charlist/1)
-    file_name = Path.basename(folder)
-    File.cd!(folder)
-    File.cd!("..")
-    :zip.create("#{file_name}.epub", files, [{:cwd, file_name}])
+    if File.dir?(folder) do
+      files = File.ls!(folder) |> Enum.map(&String.to_charlist/1)
+      file_name = Path.basename(folder)
+      File.cd!(folder)
+      File.cd!("..")
+      :zip.create("#{file_name}.epub", files, [{:cwd, file_name}])
+    else
+      IO.puts("Error: #{folder} is not a directory")
+    end
   end
-
+  
   defp copy(true, path, app_dir) do
     # IO.puts ("#{path} is a directory!")
     Enum.each(Path.wildcard("#{path}/**/*.{epub}"), fn x ->
@@ -80,10 +82,11 @@ defmodule TinyEpub.Handler do
     File.mkdir_p(Path.join([System.user_home,Path.basename(app_dir)]))
     File.cp_r!(app_dir, Path.join([System.user_home,Path.basename(app_dir)]))
     File.rm_rf(app_dir)
-    "Temporary directory is cleaned, you can access the compressed files in your home directory."
+    IO.write("Cleaned up temporary directory\n")
   end
   defp thanks!(confirmation) do
     IO.puts(confirmation)
-    IO.puts("Thank you for trying this script out!")
+    IO.puts("[Success!]")
+    IO.puts("Please check your '/home/TinyEpub' directory!\n")
   end
 end
